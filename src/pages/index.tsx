@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       <p>
         Care to join us? Find us on{' '}
         <a
-          className="cursor-pointer text-blue-400 hover:text-blue-600"
+          className="text-blue-400 hover:text-blue-600"
           href="https://t.me/retroid_xcp"
           target="_blank"
           rel="noopener noreferrer"
