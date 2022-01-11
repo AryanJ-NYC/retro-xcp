@@ -62,17 +62,19 @@ const Submit: NextPage = () => {
               />
             </label>
           </div>
-          <input
-            accept="image/png, image/jpeg, image/gif"
-            type="file"
-            {...register('file')}
-            required
-          />
-          <div>
-            <ButtonBusySpinner className="nes-btn is-primary" isBusy={isSubmitting} type="submit">
-              Submit
-            </ButtonBusySpinner>
-          </div>
+          <label className="nes-btn">
+            <span>Select Your File</span>
+            <input
+              accept="image/png, image/jpeg, image/gif"
+              className="hidden"
+              type="file"
+              {...register('file')}
+              required
+            />
+          </label>
+          <ButtonBusySpinner className="nes-btn is-primary" isBusy={isSubmitting} type="submit">
+            Submit
+          </ButtonBusySpinner>
         </div>
       </form>
       <Toaster />

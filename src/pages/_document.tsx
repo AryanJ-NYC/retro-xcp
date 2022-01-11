@@ -10,7 +10,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="flex min-h-screen">
+        <body>
           <Main />
           <NextScript />
         </body>
