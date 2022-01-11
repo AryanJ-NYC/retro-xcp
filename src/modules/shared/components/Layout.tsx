@@ -4,7 +4,7 @@ import React from 'react';
 
 export const Layout: React.FC<{ className?: string }> = ({ children, className }) => {
   return (
-    <div>
+    <div className="flex flex-col min-w-full">
       <header className="bg-slate-200 flex justify-between py-4 px-4">
         <Link href="/">
           <a>RetroXCP</a>
