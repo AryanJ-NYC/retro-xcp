@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { NextPage } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
@@ -15,6 +16,9 @@ const Submit: NextPage = () => {
 
   return (
     <Layout className="space-y-8">
+      <Head>
+        <title>RetroXCP | Submit</title>
+      </Head>
       <h1>Submission Rules</h1>
       <ol className="list-inside list-decimal space-y-2">
         <li>

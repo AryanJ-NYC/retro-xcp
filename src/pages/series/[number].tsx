@@ -1,4 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Layout } from '../../modules/shared/components/Layout';
 import { SanityClient } from '../../sanity/client';
@@ -13,32 +14,38 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
       </Layout>
     );
   }
-  console.log({ assets });
   return (
     <Layout>
-      {assets.map((a, i) => {
-        const imageUrl =
-          sanity
-            .urlForImageSource(a.image)
-            .auto('format')
-            .height(255)
-            .width(255)
-            .quality(67)
-            .url() ?? undefined;
-        return (
-          <div className="flex flex-col items-center" key={a.name}>
-            <img
-              alt={`${a.name ?? 'unnamed'} asset`}
-              className="rounded-t-md"
-              height="255"
-              width="255"
-              src={imageUrl}
-            />
-            <p>{a.name}</p>
-            <p>by {a.artists.map((artist) => artist.name).join(', ')}</p>
-          </div>
-        );
-      })}
+      <Head>
+        <title>RetroXCP | Series {router.query.number}</title>
+      </Head>
+      <div className="grid grid-cols-3 items-baseline">
+        {assets.map((a) => {
+          const imageUrl =
+            sanity
+              .urlForImageSource(a.image)
+              .auto('format')
+              .height(255)
+              .width(255)
+              .quality(67)
+              .url() ?? undefined;
+          return (
+            <div className="flex flex-col items-center" key={a.name}>
+              <a className="text-center" href={`https://xchain.io/asset/${a.name}`}>
+                <img
+                  alt={`${a.name ?? 'unnamed'} asset`}
+                  className="rounded-t-md"
+                  height="255"
+                  width="255"
+                  src={imageUrl}
+                />
+                <p>{a.name}</p>
+              </a>
+              <p>by {a.artists.map((artist) => artist.name).join(', ')}</p>
+            </div>
+          );
+        })}
+      </div>
     </Layout>
   );
 };
