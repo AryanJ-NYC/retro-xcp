@@ -31,7 +31,12 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
               .url() ?? undefined;
           return (
             <div className="flex flex-col items-center" key={a.name}>
-              <a className="text-center" href={`https://xchain.io/asset/${a.name}`}>
+              <a
+                className="text-center"
+                href={`https://xchain.io/asset/${a.name}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   alt={`${a.name ?? 'unnamed'} asset`}
                   className="rounded-t-md"
