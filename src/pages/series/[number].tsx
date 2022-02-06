@@ -22,17 +22,12 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 items-baseline">
         {assets.map((a) => {
           const imageUrl =
-            sanity
-              .urlForImageSource(a.image)
-              .auto('format')
-              .height(255)
-              .width(255)
-              .quality(67)
-              .url() ?? undefined;
+            sanity.urlForImageSource(a.image).auto('format').height(255).quality(67).url() ??
+            undefined;
           return (
             <div className="flex flex-col items-center" key={a.name}>
               <a
-                className="text-center"
+                className="flex flex-col items-center text-center"
                 href={`https://xchain.io/asset/${a.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
