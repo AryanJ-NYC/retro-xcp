@@ -19,7 +19,7 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
       <Head>
         <title>RetroXCP | Series {router.query.number}</title>
       </Head>
-      <div className="grid grid-cols-3 items-baseline">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 items-baseline">
         {assets.map((a) => {
           const imageUrl =
             sanity
