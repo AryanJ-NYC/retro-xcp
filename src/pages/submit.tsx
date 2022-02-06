@@ -12,8 +12,11 @@ const Submit: NextPage = () => {
     register,
     reset,
     formState: { isSubmitting },
+    watch,
   } = useForm();
 
+  const file = watch('file');
+  const fileName = file?.[0]?.name;
   return (
     <Layout className="space-y-8">
       <Head>
@@ -66,16 +69,19 @@ const Submit: NextPage = () => {
               />
             </label>
           </div>
-          <label className="nes-btn">
-            <span>Select Your File</span>
-            <input
-              accept="image/png, image/jpeg, image/gif"
-              className="hidden"
-              type="file"
-              {...register('file')}
-              required
-            />
-          </label>
+          <div className="space-y-2">
+            <label className="nes-btn">
+              <span>Select Your File</span>
+              <input
+                accept="image/png, image/jpeg, image/gif"
+                className="hidden"
+                type="file"
+                {...register('file')}
+                required
+              />
+            </label>
+            <p>{fileName}</p>
+          </div>
           <ButtonBusySpinner className="nes-btn is-primary" isBusy={isSubmitting} type="submit">
             Submit
           </ButtonBusySpinner>
