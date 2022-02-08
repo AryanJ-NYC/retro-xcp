@@ -32,6 +32,14 @@ const Submit: NextPage = () => {
         <li>Do not send token until approved</li>
         <li>Only 1 submission per artist until approved or denied</li>
       </ol>
+      <p>
+        There is a 5MB upload limit to what the server can handle. If your file is bigger than that,
+        it&apos;ll fail.
+      </p>
+      <p>
+        That is not to say your asset can&apos;t be greater than 5MB. It can be whatever you&apos;d
+        like on xchain. Simply upload a smaller GIF or a static image representation of your GIF.
+      </p>
       <form
         onSubmit={handleSubmit(async (data) => {
           const formData = new FormData();
@@ -43,8 +51,13 @@ const Submit: NextPage = () => {
             toast.success(`${data.assetName} has been submitted!`, { duration: 30_000 });
             reset();
           } else {
-            const { error } = await response.json();
-            toast.error(error ?? 'Something went wrong. Please try again or contact Aryan');
+            try {
+              const { error } = await response.json();
+              toast.error(error ?? 'Something went wrong. Please try again or contact Aryan');
+            } catch (e) {
+              console.error(e);
+              toast.error('Something went wrong. Did you keep this file below 5MB?');
+            }
           }
         })}
       >
