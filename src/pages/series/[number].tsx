@@ -1,6 +1,8 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import seoImg from '../../../public/SEO.png';
 import { Layout } from '../../modules/shared/components/Layout';
 import { SanityClient } from '../../sanity/client';
 import { Asset } from '../../sanity/types';
@@ -16,6 +18,12 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
   }
   return (
     <Layout>
+      <NextSeo
+        title={`Series ${router.query.number} | RetroXCP`}
+        description="A Counterparty project devoted to everything retro. We make 'em like they used to!"
+        openGraph={{ images: [{ url: seoImg.src, height: 600, width: 600 }] }}
+        twitter={{ handle: '@RetroXcp', cardType: 'summary' }}
+      />
       <Head>
         <title>RetroXCP | Series {router.query.number}</title>
       </Head>

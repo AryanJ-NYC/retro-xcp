@@ -1,7 +1,9 @@
 import sample from 'lodash/sample';
 import type { GetStaticProps, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import Link from 'next/link';
+import seoImg from '../../public/SEO.png';
 import { Layout } from '../modules/shared/components/Layout';
 import { SanityClient } from '../sanity/client';
 import { Asset } from '../sanity/types';
@@ -10,6 +12,12 @@ const sanityClient = new SanityClient();
 const Home: NextPage<Props> = ({ seriesToAsset }) => {
   return (
     <Layout className="space-y-8">
+      <NextSeo
+        title="RetroXCP"
+        description="A Counterparty project devoted to everything retro. We make 'em like they used to!"
+        openGraph={{ images: [{ url: seoImg.src, height: 600, width: 600 }] }}
+        twitter={{ handle: '@RetroXcp', cardType: 'summary' }}
+      />
       <Head>
         <title>RetroXCP</title>
       </Head>
@@ -19,7 +27,6 @@ const Home: NextPage<Props> = ({ seriesToAsset }) => {
             .urlForImageSource(asset.image)
             .auto('format')
             .height(255)
-            .width(255)
             .quality(67)
             .url() ?? undefined;
 
