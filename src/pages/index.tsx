@@ -35,7 +35,7 @@ const Home: NextPage<Props> = ({ seriesToAsset }) => {
           </Link>
         );
       })}
-      <p>Welcome to RetroXCP. We&apos;re just getting started!</p>
+      <p>Welcome to RetroXCP.</p>
       <p>We&apos;re all about adding a retro flavor to Counterparty mascots, memes and more!</p>
       <p>
         Care to join us? Find us on{' '}
