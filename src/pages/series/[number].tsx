@@ -1,6 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Layout } from '../../modules/shared/components/Layout';
 import { SanityClient } from '../../sanity/client';
@@ -18,9 +17,6 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
   return (
     <Layout>
       <NextSeo title={`Series ${router.query.number} | RetroXCP`} />
-      <Head>
-        <title>RetroXCP | Series {router.query.number}</title>
-      </Head>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 items-baseline">
         {assets.map((a, i) => {
           const imageUrl =

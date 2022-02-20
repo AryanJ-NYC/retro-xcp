@@ -1,9 +1,6 @@
 import sample from 'lodash/sample';
 import type { GetStaticProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
-import Head from 'next/head';
 import Link from 'next/link';
-import logo from '../../public/logo.svg';
 import { Layout } from '../modules/shared/components/Layout';
 import { SanityClient } from '../sanity/client';
 import { Asset } from '../sanity/types';
@@ -12,10 +9,6 @@ const sanityClient = new SanityClient();
 const Home: NextPage<Props> = ({ seriesToAsset }) => {
   return (
     <Layout className="space-y-8">
-      <Head>
-        <link rel="shortcut icon" href={logo.src} type="image/x-icon" />
-        <title>RetroXCP</title>
-      </Head>
       {Object.entries(seriesToAsset).map(([seriesNo, asset]) => {
         const imageUrl =
           sanityClient
