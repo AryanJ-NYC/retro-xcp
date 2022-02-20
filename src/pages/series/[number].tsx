@@ -2,7 +2,6 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { NextSeo } from 'next-seo';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import seoImg from '../../../public/SEO.png';
 import { Layout } from '../../modules/shared/components/Layout';
 import { SanityClient } from '../../sanity/client';
 import { Asset } from '../../sanity/types';
@@ -18,22 +17,17 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
   }
   return (
     <Layout>
-      <NextSeo
-        title={`Series ${router.query.number} | RetroXCP`}
-        description="A Counterparty project devoted to everything retro. We make 'em like they used to!"
-        openGraph={{ images: [{ url: seoImg.src, height: 600, width: 600 }] }}
-        twitter={{ handle: '@RetroXcp', cardType: 'summary' }}
-      />
+      <NextSeo title={`Series ${router.query.number} | RetroXCP`} />
       <Head>
         <title>RetroXCP | Series {router.query.number}</title>
       </Head>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 items-baseline">
-        {assets.map((a) => {
+        {assets.map((a, i) => {
           const imageUrl =
             sanity.urlForImageSource(a.image).auto('format').height(255).quality(67).url() ??
             undefined;
           return (
-            <div className="flex flex-col items-center" key={a.name}>
+            <div className="flex flex-col items-center space-y-0.5" key={a.name}>
               <a
                 className="flex flex-col items-center text-center"
                 href={`https://xchain.io/asset/${a.name}`}
@@ -49,7 +43,8 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
                 />
                 <p>{a.name}</p>
               </a>
-              <p>by {a.artists.map((artist) => artist.name).join(', ')}</p>
+              <p className="text-sm">by {a.artists.map((artist) => artist.name).join(', ')}</p>
+              <p className="text-xs">Card {i + 1}</p>
             </div>
           );
         })}
