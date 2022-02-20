@@ -39,7 +39,9 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
                 />
                 <p>{a.name}</p>
               </a>
-              <p className="text-sm">by {a.artists.map((artist) => artist.name).join(', ')}</p>
+              {!!a.artists?.length && (
+                <p className="text-sm">by {a.artists.map((artist) => artist.name).join(', ')}</p>
+              )}
               <p className="text-xs">Card {i + 1}</p>
             </div>
           );

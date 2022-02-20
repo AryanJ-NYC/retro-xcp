@@ -12,9 +12,9 @@ export const Layout: React.FC<{ className?: string }> = ({ children, className }
           <a>
             <Image
               alt="RetroXCP Logo. A SNES controller with the logo in the back"
-              height={100}
+              height={80}
+              width={80}
               src="/logo.svg"
-              width={100}
             />
           </a>
         </Link>
