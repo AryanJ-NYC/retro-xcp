@@ -20,8 +20,7 @@ const SeriesPage: NextPage<Props> = ({ assets }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 items-baseline">
         {assets.map((a, i) => {
           const imageUrl =
-            sanity.urlForImageSource(a.image).auto('format').height(255).quality(67).url() ??
-            undefined;
+            sanity.urlForImageSource(a.image).auto('format').height(255).url() ?? undefined;
           return (
             <div className="flex flex-col items-center space-y-0.5" key={a.name}>
               <a

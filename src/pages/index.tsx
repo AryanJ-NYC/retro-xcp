@@ -11,12 +11,7 @@ const Home: NextPage<Props> = ({ seriesToAsset }) => {
     <Layout className="space-y-8">
       {Object.entries(seriesToAsset).map(([seriesNo, asset]) => {
         const imageUrl =
-          sanityClient
-            .urlForImageSource(asset.image)
-            .auto('format')
-            .height(255)
-            .quality(67)
-            .url() ?? undefined;
+          sanityClient.urlForImageSource(asset.image).auto('format').height(255).url() ?? undefined;
 
         return (
           <Link key={seriesNo} href={`/series/${seriesNo}`}>
