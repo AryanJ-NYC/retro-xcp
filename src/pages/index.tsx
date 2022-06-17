@@ -9,27 +9,30 @@ const sanityClient = new SanityClient();
 const Home: NextPage<Props> = ({ seriesToAsset }) => {
   return (
     <Layout className="space-y-8">
-      {Object.entries(seriesToAsset).map(([seriesNo, asset]) => {
-        const imageUrl =
-          sanityClient.urlForImageSource(asset.image).auto('format').height(255).url() ?? undefined;
+      <div className="grid grid-cols-2">
+        {Object.entries(seriesToAsset).map(([seriesNo, asset]) => {
+          const imageUrl =
+            sanityClient.urlForImageSource(asset.image).auto('format').height(255).url() ??
+            undefined;
 
-        return (
-          <Link key={seriesNo} href={`/series/${seriesNo}`}>
-            <a>
-              <div className="flex flex-col items-center">
-                <img
-                  alt={`${asset.name ?? 'unnamed'} asset`}
-                  className="rounded-t-md"
-                  height="255"
-                  width="255"
-                  src={imageUrl}
-                />
-                <p>Series {seriesNo}</p>
-              </div>
-            </a>
-          </Link>
-        );
-      })}
+          return (
+            <Link key={seriesNo} href={`/series/${seriesNo}`}>
+              <a>
+                <div className="flex flex-col items-center">
+                  <img
+                    alt={`${asset.name ?? 'unnamed'} asset`}
+                    className="rounded-t-md"
+                    height="255"
+                    width="255"
+                    src={imageUrl}
+                  />
+                  <p>Series {seriesNo}</p>
+                </div>
+              </a>
+            </Link>
+          );
+        })}
+      </div>
       <p>Welcome to RetroXCP.</p>
       <p>We&apos;re all about adding a retro flavor to Counterparty mascots, memes and more!</p>
       <p>
